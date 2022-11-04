@@ -88,10 +88,19 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPangramic(String[] array) {
         //create a set to store array's every letter;
-        //sort the letter
-        //if (i+1)-i != 1; then it is false
-
-
+        //if total letter less than 26, then it is false
+        Set<String> set1 = new HashSet<>();
+        String tmp = "";
+        for(String words: array){
+            for(int i=0; i<words.length(); i++){
+                tmp =String.valueOf(words.charAt(i));
+                if(!tmp.equals(" ")) {
+                    set1.add(tmp.toUpperCase());
+                }
+            }
+        }
+        System.out.println(set1.toString());
+        return set1.size()==26;
     }
 
     /**
@@ -143,8 +152,29 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        //using for loop to check each element in the array, if the adjunct elements are the same, drop one;
+//        String tmp="";
+//        ArrayList <String> a = new ArrayList<>(Arrays.asList(array));
+//
+//        for(int i=0; i<array.length-1; i++){
+//            if(array[i].equals(array[i+1])){
+//               a.remove(array[i]);
+//            }
+//        }
+//        return (String[]) a.toArray();
+        //Create ArrayList, if the adjunct element is not the same, add to the ArrayList;
+
+        ArrayList<String> a = new ArrayList();
+
+        for (int i = 0; i < array.length-1; i++) {
+
+            if (!array[i].equals(array[i + 1])) {
+                System.out.print(array[0]+" ");
+                a.add(array[i+1]);
+
+            }
+        }
+
+        return (String[]) a.toArray();
     }
-
-
 }
