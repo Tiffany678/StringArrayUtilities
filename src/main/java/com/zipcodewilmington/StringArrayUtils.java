@@ -37,13 +37,15 @@ public class StringArrayUtils {
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
 
-        StringBuilder sb = new StringBuilder();
-        String str="";
-       String[] newArray = Arrays.copyOfRange(array,1,array.length-1);
-       for(String value: newArray){
-          str+= sb.append(value);
-       }
-       return str;
+
+       return array[array.length-2];
+
+//        String result="";
+//        List<String> newArray = new ArrayList();
+//        for(int i=1; i<array.length; i++){
+//            newArray.add(array[i]);
+//        }
+//        return newArray.toString();
 
     }
 
@@ -64,8 +66,8 @@ public class StringArrayUtils {
     public static String[] reverse(String[] array) {
         Collections.reverse(Arrays.asList(array));
         return array;
-    }
 
+    }
     /**
      * @param array array of String objects
      * @return true if the order of the array is the same backwards and forwards
@@ -85,7 +87,11 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        //create a set to store array's every letter;
+        //sort the letter
+        //if (i+1)-i != 1; then it is false
+
+
     }
 
     /**
