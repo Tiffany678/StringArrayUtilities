@@ -5,6 +5,32 @@ import java.util.*;
  */
 public class StringArrayUtils {
     /**
+     * @param array array of chars
+     * @return array of Strings with consecutive duplicates removes
+     */ // TODO
+    public static String[] removeConsecutiveDuplicates(String[] array) {
+        ArrayList <String> a = new ArrayList<>();
+        for(int i=0; i< array.length-1;i++){
+            a.add(array[i]);
+            if(!array[i].equals(array[i+1])){
+                a.add(array[i+1]);
+            }
+        }
+return a.toArray(new String[a.size()]);
+        //        String[] a= new String[array.length];
+//        int count=0;
+//
+//        for (int i = 0; i < array.length-1; i++) {
+//            a[count]=array[i];
+//            if (!array[i].equals(array[i + 1])) {
+//                count++;
+//                a[count]=array[i=1];
+//
+//            }
+//        }
+//        return a;
+    }
+    /**
      * @param array array of String objects
      * @return first element of specified array
      */ // TODO
@@ -57,6 +83,7 @@ public class StringArrayUtils {
     public static boolean contains(String[] array, String value) {
 
         return Arrays.asList(array).contains(value);
+
     }
 
     /**
@@ -124,57 +151,45 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        String[] newArray = new String[array.length];
+//        String[] newArray = new String[array.length];
+//        for(int i=0; i<array.length; i++){
+//            if(array[i].equals(array[i+1])){
+//
+//            }
+//        }
+//        return newArray;
+        ArrayList<String> al = new ArrayList<>();
         for(int i=0; i<array.length; i++){
-            if(array[i]==array[i+1]){
-
+            if(!array[i].equalsIgnoreCase(valueToRemove)){
+                al.add(array[i]);
             }
         }
-        return newArray;
+        return al.toArray(new String[al.size()]);
     }
 
-    /**
-     * @param array array of chars
-     * @return array of Strings with consecutive duplicates removes
-     */ // TODO
-    public static String[] removeConsecutiveDuplicates(String[] array) {
-        String[] newArray = new String[array.length];
-        for(int i=0; i<array.length; i++){
-            if(array[i]==array[i+1]){
 
-            }
-        }
-        return newArray;
-    }
 
     /**
      * @param array array of chars
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        //using for loop to check each element in the array, if the adjunct elements are the same, drop one;
-//        String tmp="";
-//        ArrayList <String> a = new ArrayList<>(Arrays.asList(array));
-//
-//        for(int i=0; i<array.length-1; i++){
-//            if(array[i].equals(array[i+1])){
-//               a.remove(array[i]);
-//            }
-//        }
-//        return (String[]) a.toArray();
-        //Create ArrayList, if the adjunct element is not the same, add to the ArrayList;
+        //create eleResult to store the packed element;
+        //go through the array to find those the same adjacent elements and put them in eleResult;
 
-        ArrayList<String> a = new ArrayList();
+        String[] a= new String[array.length];
+        int count=0;
+        String eleResult=array[0];
 
         for (int i = 0; i < array.length-1; i++) {
+            if (array[i].equals(array[i + 1])) {
+                eleResult+=array[i + 1];
 
-            if (!array[i].equals(array[i + 1])) {
-                System.out.print(array[0]+" ");
-                a.add(array[i+1]);
-
+            } else{
+                a[count]=array[i+1];
+                count++;
             }
         }
-
-        return (String[]) a.toArray();
+        return a;
     }
 }
