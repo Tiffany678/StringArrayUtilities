@@ -9,13 +9,18 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        ArrayList<String> al = new ArrayList<>(Arrays.asList(array));
-        for (int i = 0; i < array.length-1; i++) {
-            if (array[i].equalsIgnoreCase(array[i+1])) {
-                al.remove(array[i+1]);
+        ArrayList<String> al = new ArrayList<>();
+        al.add(array[0]);
+        for (int i = 1; i < array.length-1; i++) {
+            if (!array[i].equals(array[i+1])) {
+                System.out.print(array[i]+", ");
+                al.add(array[i+1]);
             }
         }
+
+        System.out.println(al);
         return al.toArray(new String[al.size()]);
+
     }
     
     /**
@@ -102,19 +107,19 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
+
         //create a set to store array's every letter;
         //if total letter less than 26, then it is false
         Set<String> set1 = new HashSet<>();
         String tmp = "";
-        for(String words: array){
-            for(int i=0; i<words.length(); i++){
-                tmp =String.valueOf(words.charAt(i));
-                if(!tmp.equals(" ")) {
+        for(String words: array) {
+            for (int i = 0; i < words.length(); i++) {
+                tmp = String.valueOf(words.charAt(i));
+                if (!tmp.equals(" ")) {
                     set1.add(tmp.toUpperCase());
                 }
             }
         }
-        System.out.println(set1.toString());
         return set1.size()==26;
     }
 
@@ -155,10 +160,14 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
+
         ArrayList<String> al = new ArrayList<>(Arrays.asList(array));
+        String tmp="";
+
         for (int i = 0; i < array.length-1; i++) {
-            if (array[i].equalsIgnoreCase(array[i+1])) {
-                al.remove(array[i+1]);
+            tmp=array[i];
+            if (array[i].equals(array[i+1])) {
+                tmp+=array[i+1];
             }
         }
         return al.toArray(new String[al.size()]);
